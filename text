@@ -1,0 +1,38 @@
+import React from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+import useBillerStore from '../stores/useBillerStore';
+
+const BillerDetails = () => {
+  const selectedBiller = useBillerStore((state) => state.selectedBiller);
+
+  if (!selectedBiller) {
+    return <Text>No biller selected</Text>; // Handle case where no biller is selected
+  }
+
+  return (
+    <View style={styles.container}>
+      <Image source={selectedBiller.image} style={styles.billerImage} />
+      <Text style={styles.billerName}>{selectedBiller.name}</Text>
+      {/* Display additional details about the biller if available */}
+    </View>
+  );
+};
+
+export default BillerDetails;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  billerImage: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+  },
+  billerName: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});

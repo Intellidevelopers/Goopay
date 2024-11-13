@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Jigipay",
+    "name": "Goopay",
     "slug": "Jigipay",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -11,6 +11,10 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "permissions": [
+      "READ_EXTERNAL_STORAGE",
+      "WRITE_EXTERNAL_STORAGE"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -22,6 +26,17 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "1dd2ef8f-e4f0-4f6a-a0e1-950df6e29465"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1dd2ef8f-e4f0-4f6a-a0e1-950df6e29465"
     }
   }
 }
