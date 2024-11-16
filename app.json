@@ -22,21 +22,22 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.jtech12.Jigipay"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "1dd2ef8f-e4f0-4f6a-a0e1-950df6e29465"
-      }
-    },
     "runtimeVersion": {
       "policy": "appVersion"
     },
+    "extra": {
+      "eas": {
+        "projectId": "ba7cc8a9-f2e4-4504-9cdb-be361b30727b"
+      }
+    },
     "updates": {
-      "url": "https://u.expo.dev/1dd2ef8f-e4f0-4f6a-a0e1-950df6e29465"
+      "url": "https://u.expo.dev/ba7cc8a9-f2e4-4504-9cdb-be361b30727b"
     }
   }
 }

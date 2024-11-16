@@ -47,6 +47,9 @@ import DeviceManagement from './screens/DeviceManagement';
 import Electricity from './screens/Electricity';
 import BillerDetails from './screens/BillerDetails';
 import BillerSuccess from './screens/BillerSucces';
+import Betting from './screens/Betting';
+import BettingDetails from './screens/BettingDetails';
+import BettingSuccess from './screens/BettingSuccess';
 
 
 const Stack = createNativeStackNavigator();
@@ -58,8 +61,8 @@ function App() {
       <ApplicationProvider {...eva} theme={eva.light}>
         <NavigationContainer>
           <Stack.Navigator>
-          <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
             <Stack.Screen name="Main" component={BottomTabs} options={{ headerShown: false }}  />
+            <Stack.Screen name="Splash" component={Splash} options={{ headerShown: false }} />
             <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerShown: false }} />
             <Stack.Screen name="Signup" component={Signup} options={{ headerShown: false }} />
             <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
@@ -67,7 +70,7 @@ function App() {
             <Stack.Screen name="Help" component={HelpCenter} options={{ headerShown: false }} />
             <Stack.Screen name="OtpVerify" component={OtpVerification} options={{ headerShown: false }} />
             <Stack.Screen name="TransactionDetails" component={TransactionDetails} options={{ headerShown: false }} />
-            <Stack.Screen name="Transactions" component={Transactions} options={{ headerShown: false }} />
+            <Stack.Screen name="Transactions" component={Transactions} />
             <Stack.Screen name="CardDetails" component={CardDetails} options={{ headerShown: false }} />
             <Stack.Screen name="Profile" component={ProfileScreen} options={{ headerShown: false }} />
             <Stack.Screen name="CardSettings" component={CardSettings} options={{ headerShown: false }}  />
@@ -98,6 +101,9 @@ function App() {
             <Stack.Screen name="BillerDetails" component={BillerDetails} options={{ headerShown: false }}  />
             <Stack.Screen name="BillerSuccess" component={BillerSuccess} options={{ headerShown: false }}  />
             <Stack.Screen name="BillerCategory" component={BillerSuccess} options={{ headerShown: false }}  />
+            <Stack.Screen name="Betting" component={Betting} options={{ headerShown: false }}  />
+            <Stack.Screen name="BettingDetails" component={BettingDetails} options={{ headerShown: false }}  />
+            <Stack.Screen name="BettingSuccess" component={BettingSuccess} options={{ headerShown: false }}  />
           </Stack.Navigator>
           <StatusBar backgroundColor='#F6F9FF' />
         </NavigationContainer>

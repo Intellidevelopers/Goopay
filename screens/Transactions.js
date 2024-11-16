@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity } from 'react-native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, { useState, useRef } from 'react';
+import { StyleSheet, Text, View, FlatList, TextInput, TouchableOpacity, Animated, Dimensions } from 'react-native';
+import { GestureHandlerRootView, PanGestureHandler, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import colors from '../components/colors';
 import { AntDesign, Feather } from 'react-native-vector-icons';
 import useTransactionStore from '../store/transactionStore';
 import { StatusBar } from 'expo-status-bar';
 
-const Tab = createMaterialTopTabNavigator();
+const screenWidth = Dimensions.get('window').width;
 
+// Mock transactions data
 const transactionsData = [
   { id: '1', name: '10GB - 30 Days', amount: '-₦800.00', date: '12:24 PM, 02/11/2024', status: 'success', type: 'sent', refNumber: '067234567829', transactionId: 'TXN206744901', bank: 'Data Subscription' },
   { id: '2', name: 'Hosea Mathias', amount: '+₦360,000.00', date: '10:30 PM, 29/09/2024', status: 'failed', type: 'sent', refNumber: '000034567829', transactionId: 'TXN290811002', bank: 'Fidelity bank' },
@@ -17,6 +18,7 @@ const transactionsData = [
   // Additional transactions...
 ];
 
+// Utility function to get status color
 const getStatusColor = (status) => {
   switch (status) {
     case 'success': return '#2ecc71';
@@ -85,7 +87,7 @@ const TransactionsList = ({ statusFilter }) => {
           <TransactionItem {...item} onPress={() => handleTransactionPress(item)} />
         )}
       />
-      <StatusBar backgroundColor={colors.white}/>
+      <StatusBar backgroundColor={colors.white} />
     </View>
   );
 };
@@ -96,17 +98,81 @@ const SuccessTransactions = () => <TransactionsList statusFilter="success" />;
 const FailedTransactions = () => <TransactionsList statusFilter="failed" />;
 const PendingTransactions = () => <TransactionsList statusFilter="pending" />;
 
-// Main Transactions Component
-const Transactions = () => {
+// Custom Top Tab Bar Component
+const CustomTabBar = ({ tabs, activeTab, setActiveTab }) => {
   return (
-    <View style={styles.container}>
-      <Tab.Navigator screenOptions={{ tabBarLabelStyle: { fontSize: 13, fontWeight: '500', marginTop: 50 } }}>
-        <Tab.Screen name="All" component={AllTransactions} />
-        <Tab.Screen name="Success" component={SuccessTransactions} />
-        <Tab.Screen name="Failed" component={FailedTransactions} />
-        <Tab.Screen name="Pending" component={PendingTransactions} />
-      </Tab.Navigator>
+    <View style={styles.tabBarContainer}>
+      {tabs.map((tab, index) => (
+        <TouchableOpacity
+          key={index}
+          style={[styles.tab, activeTab === tab && styles.activeTab]}
+          onPress={() => setActiveTab(tab)}
+        >
+          <Text style={[styles.tabText, activeTab === tab && styles.activeTabText]}>{tab}</Text>
+        </TouchableOpacity>
+      ))}
     </View>
+  );
+};
+
+// Transactions Component with Swipe Animation
+const Transactions = () => {
+  const [activeTab, setActiveTab] = useState('All');
+  const tabOrder = ['All', 'Success', 'Failed', 'Pending'];
+  const activeTabIndex = tabOrder.indexOf(activeTab);
+  const animatedValue = useRef(new Animated.Value(0)).current;
+
+  // Function to handle swipe gestures
+  const handleSwipe = (event) => {
+    if (event.nativeEvent.state === State.END) {
+      const { translationX } = event.nativeEvent;
+      if (translationX < -50 && activeTabIndex < tabOrder.length - 1) {
+        // Swipe left to go to the next tab
+        setActiveTab(tabOrder[activeTabIndex + 1]);
+      } else if (translationX > 50 && activeTabIndex > 0) {
+        // Swipe right to go to the previous tab
+        setActiveTab(tabOrder[activeTabIndex - 1]);
+      }
+    }
+  };
+
+  // Function to render the selected tab's component
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'All':
+        return <AllTransactions />;
+      case 'Success':
+        return <SuccessTransactions />;
+      case 'Failed':
+        return <FailedTransactions />;
+      case 'Pending':
+        return <PendingTransactions />;
+      default:
+        return <AllTransactions />;
+    }
+  };
+
+  return (
+    <GestureHandlerRootView style={styles.container}>
+      <CustomTabBar
+        tabs={tabOrder}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+      />
+      <PanGestureHandler onHandlerStateChange={handleSwipe}>
+        <Animated.View
+          style={[
+            styles.swipeContainer,
+            {
+              transform: [{ translateX: animatedValue }],
+            },
+          ]}
+        >
+          {renderTabContent()}
+        </Animated.View>
+      </PanGestureHandler>
+      <StatusBar backgroundColor={colors.white} />
+    </GestureHandlerRootView>
   );
 };
 
@@ -116,6 +182,28 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.greyBackground,
+  },
+  tabBarContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: colors.white,
+    paddingVertical: 10,
+  },
+  tab: {
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+  },
+  activeTab: {
+    borderBottomWidth: 2,
+    borderBottomColor: colors.primary, // Replace with your primary color
+  },
+  tabText: {
+    fontSize: 16,
+    color: colors.black,
+  },
+  activeTabText: {
+    fontWeight: 'bold',
+    color: colors.primary, // Replace with your active tab text color
   },
   input: {
     flex: 1,
@@ -127,12 +215,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 20,
-    width: '90%',
-    alignSelf: 'center',
-    marginTop: 30,
+    borderRadius: 10,
     marginBottom: 20,
-    borderRadius: 30,
-    padding: 10,
   },
   transactionItem: {
     flexDirection: 'row',
@@ -184,7 +268,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyBackground,
     flex: 1,
   },
-  status:{
-    textAlign: 'right'
+  status: {
+    textAlign: 'right',
+  },
+  swipeContainer: {
+    flex: 1,
+    flexDirection: 'row',
   },
 });

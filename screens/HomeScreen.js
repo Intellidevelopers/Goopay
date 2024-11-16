@@ -256,7 +256,12 @@ const HomeScreen = ({ navigation }) => {
           </View>
           <Text style={styles.subText}>Details for More options go here...</Text>
 
-          <TouchableOpacity style={styles.billContainer}>
+          <TouchableOpacity style={styles.billContainer}
+            onPress={() => {
+              setIsSummaryVisible(false); // Close the BottomSheet
+              navigation.navigate('Betting');
+            }}
+          >
             <View style={styles.iconContainer}>
               <Feather name='tv' size={20}/>
             </View>
@@ -266,7 +271,12 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.billContainer}>
+          <TouchableOpacity style={styles.billContainer}
+            onPress={() => {
+              setIsSummaryVisible(false); // Close the BottomSheet
+              navigation.navigate('Booster');
+            }}
+          >
             <View style={styles.iconContainer}>
               <Feather name='tv' size={20}/>
             </View>
@@ -276,7 +286,12 @@ const HomeScreen = ({ navigation }) => {
             </View>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.billContainer}>
+          <TouchableOpacity style={styles.billContainer}
+            onPress={() => {
+              setIsSummaryVisible(false); // Close the BottomSheet
+              navigation.navigate('Referral');
+            }}
+          >
             <View style={styles.iconContainer}>
               <Feather name='tv' size={20}/>
             </View>
@@ -285,8 +300,6 @@ const HomeScreen = ({ navigation }) => {
               <Text style={styles.description}>Refer to friends to earn more on Goopay</Text>
             </View>
           </TouchableOpacity>
-
-          
         </View>
       </BottomSheet>
     </ScrollView>
