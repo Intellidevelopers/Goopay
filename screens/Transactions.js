@@ -217,6 +217,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 10,
     marginBottom: 20,
+    width: '90%',
+    alignSelf: 'center',
+    marginTop: 10
   },
   transactionItem: {
     flexDirection: 'row',

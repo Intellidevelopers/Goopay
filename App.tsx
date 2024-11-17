@@ -50,6 +50,7 @@ import BillerSuccess from './screens/BillerSucces';
 import Betting from './screens/Betting';
 import BettingDetails from './screens/BettingDetails';
 import BettingSuccess from './screens/BettingSuccess';
+import Referral from './screens/Referral';
 
 
 const Stack = createNativeStackNavigator();
@@ -104,6 +105,7 @@ function App() {
             <Stack.Screen name="Betting" component={Betting} options={{ headerShown: false }}  />
             <Stack.Screen name="BettingDetails" component={BettingDetails} options={{ headerShown: false }}  />
             <Stack.Screen name="BettingSuccess" component={BettingSuccess} options={{ headerShown: false }}  />
+            <Stack.Screen name="Referral" component={Referral} options={{ headerShown: false }}  />
           </Stack.Navigator>
           <StatusBar backgroundColor='#F6F9FF' />
         </NavigationContainer>

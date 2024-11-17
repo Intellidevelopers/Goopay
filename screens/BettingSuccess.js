@@ -314,7 +314,7 @@ const Success = ({ navigation }) => {
         Congratulations! Your Bet Funding of <Text style={styles.amount}>₦{successBiller.amount}</Text> for <Text style={styles.recipient}>{successBiller.name}</Text> was successful.
       </Text>
 
-      <View style={styles.flex}>
+      {/* <View style={styles.flex}>
         <Text style={styles.label}>Bil Plan</Text>
         <Text>:</Text>
         <Text style={styles.amount}>{successBiller.plan}</Text>
@@ -324,9 +324,9 @@ const Success = ({ navigation }) => {
         <Text style={styles.label}>Option</Text>
         <Text>:</Text>
         <Text style={styles.amount}>{successBiller.option === 'myself' ? 'Myself' : 'Others'}</Text>
-      </View>
+      </View> */}
 
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.actionButton} onPress={handleShareReceipt}>
           <View style={styles.iconContain}>
             <Entypo name="share" size={20} color="#007AFF" />
@@ -340,7 +340,7 @@ const Success = ({ navigation }) => {
           </View>
           <Text style={styles.actionButtonText}>Download Receipt</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
       <TouchableOpacity style={styles.dismissButton} onPress={() => navigation.navigate('Home')}>
         <Text style={styles.dismissButtonText}>Dismiss</Text>
