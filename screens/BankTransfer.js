@@ -356,7 +356,9 @@ const styles = StyleSheet.create({
   sectionLabel: { fontSize: 14, color: '#666', marginBottom: 8, fontWeight: '500' },
   inputContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.white, padding: 15, borderRadius: 15, marginBottom: 16, paddingVertical: 20 },
   input: { flex: 1, marginLeft: 10 },
-  searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.input, padding: 10, borderRadius: 8 },
+  searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: colors.input, padding: 6, borderRadius: 12,
+    paddingHorizontal: 10
+   },
   searchInput: { flex: 1, marginLeft: 10 },
   customTabBarContainer: { flexDirection: 'row', justifyContent: 'space-around', marginBottom: 16 },
   tabButton: { paddingVertical: 10, paddingHorizontal: 15 },
@@ -393,8 +395,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.input,
-    padding: 10,
-    borderRadius: 8,
+    padding: 6,
+    borderRadius: 12,
+    paddingHorizontal: 10
   },
   addButton: { backgroundColor: colors.primary, padding: 12, borderRadius: 8, alignItems: 'center' },
   addButtonText: { color: '#fff', fontWeight: 'bold' },

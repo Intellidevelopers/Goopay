@@ -474,7 +474,17 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     color: '#333',
     textAlign: 'center',
-  }
+  },
+  continueButton: {
+    alignItems: 'center',
+    paddingVertical: 15,
+    borderRadius: 8,
+  },
+  continueText: {
+    color: colors.white,
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   
   
 });

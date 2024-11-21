@@ -51,6 +51,18 @@ import Betting from './screens/Betting';
 import BettingDetails from './screens/BettingDetails';
 import BettingSuccess from './screens/BettingSuccess';
 import Referral from './screens/Referral';
+import Booster from './screens/Booster';
+import Instagram from './screens/Instagram';
+import Facebook from './screens/Facebook';
+import Twitter from './screens/Twitter';
+import Tiktok from './screens/Tiktok';
+import Youtube from './screens/Youtube';
+import Spotify from './screens/Spotify';
+import OrderScreen from './screens/OrderScreen';
+import BoostSuccess from './screens/BoostSuccess';
+import Withdraw from './screens/Withdraw';
+import WithdrawSummary from './screens/WithdrawSummary';
+import TransactionPin from './screens/TransactionPin';
 
 
 const Stack = createNativeStackNavigator();
@@ -106,6 +118,18 @@ function App() {
             <Stack.Screen name="BettingDetails" component={BettingDetails} options={{ headerShown: false }}  />
             <Stack.Screen name="BettingSuccess" component={BettingSuccess} options={{ headerShown: false }}  />
             <Stack.Screen name="Referral" component={Referral} options={{ headerShown: false }}  />
+            <Stack.Screen name="Booster" component={Booster} options={{ headerShown: false }}  />
+            <Stack.Screen name="Instagram" component={Instagram} options={{ headerShown: false }}  />
+            <Stack.Screen name="Facebook" component={Facebook} options={{ headerShown: false }}  />
+            <Stack.Screen name="Twitter" component={Twitter} options={{ headerShown: false }}  />
+            <Stack.Screen name="Tiktok" component={Tiktok} options={{ headerShown: false }}  />
+            <Stack.Screen name="Youtube" component={Youtube} options={{ headerShown: false }}  />
+            <Stack.Screen name="Spotify" component={Spotify} options={{ headerShown: false }}  />
+            <Stack.Screen name="OrderScreen" component={OrderScreen} options={{ headerShown: false }}  />
+            <Stack.Screen name="BoostSuccess" component={BoostSuccess} options={{ headerShown: false }}  />
+            <Stack.Screen name="Withdraw" component={Withdraw} options={{ headerShown: false }}  />
+            <Stack.Screen name="WithdrawSummary" component={WithdrawSummary} options={{ headerShown: false }}  />
+            <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}  />
           </Stack.Navigator>
           <StatusBar backgroundColor='#F6F9FF' />
         </NavigationContainer>

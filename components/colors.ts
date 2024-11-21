@@ -26,6 +26,7 @@ const colors = {
     greyText: '#666', //
     // Add more as needed
     oldgreyBackground: '#F6F9FF', // Background color
+    periwinkle: '#2727A7', // 
 
   };
   

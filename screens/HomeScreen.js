@@ -106,6 +106,7 @@ const HomeScreen = ({ navigation }) => {
   const { setSelectedTransaction } = useTransactionStore();
   const [greeting, setGreeting] = useState(getGreeting());
   const [isSummaryVisible, setIsSummaryVisible] = useState(false); // New state for summary sheet
+  const [isAirtime2CashVisible, setIsAirtime2CashVisible] = useState(false); // New state for summary sheet
   
 
 
@@ -122,6 +123,9 @@ const HomeScreen = ({ navigation }) => {
 
   const onConfirm = () => {
     setIsSummaryVisible(true); // Show summary sheet
+  };
+  const onAirtime2Cash = () => {
+    setIsAirtime2CashVisible(true); // Show onAirtime2Cash summary sheet
   };
 
 
@@ -174,7 +178,7 @@ const HomeScreen = ({ navigation }) => {
           <Octicons name="paper-airplane" size={24} color="#fff" />
           <Text style={styles.actionText}>Send</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionButton}>
+        <TouchableOpacity style={styles.actionButton} onPress={() => navigation.navigate('Withdraw')}>
           <Feather name="arrow-down-circle" size={24} color="#fff" />
           <Text style={styles.actionText}>Withdraw</Text>
         </TouchableOpacity>
@@ -188,7 +192,7 @@ const HomeScreen = ({ navigation }) => {
           { name: "Electricity", icon: "flash", screen: "Electricity" },
           { name: "TV Cable", icon: "television", screen: "TVCable" },
           { name: "Airtime", icon: "phone", screen: "Airtime" },
-          { name: "Airtime 2 Cash", icon: "phone-sync", screen: "RentBill" },
+          { name: "Airtime 2 Cash", icon: "phone-sync", onPress: onAirtime2Cash },
           { name: "Loans", icon: "piggy-bank", screen: "Loans" },
           { name: "More", icon: "dots-horizontal", onPress: onConfirm }
         ].map((service, index) => (
@@ -298,6 +302,53 @@ const HomeScreen = ({ navigation }) => {
             <View style={styles.textAlignContainer}>
               <Text style={styles.billName}>Referral</Text>
               <Text style={styles.description}>Refer to friends to earn more on Goopay</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </BottomSheet>
+
+      <BottomSheet isVisible={isAirtime2CashVisible}>
+        <View style={styles.bottomSheetContainer}>
+          <View style={styles.bottomSheetHeader}>
+            <Text style={styles.summaryTitle}>Airtime to Cash</Text>
+            <TouchableOpacity onPress={() => setIsAirtime2CashVisible(false)}>
+              <AntDesign name='close' size={20} color={colors.primary} />
+            </TouchableOpacity>
+          </View>
+          <Text style={styles.subText}>Choose your preffered method</Text>
+
+          <TouchableOpacity style={styles.billContainer}
+            onPress={() => {
+              setIsAirtime2CashVisible(false); // Close the BottomSheet
+              navigation.navigate('Betting');
+            }}
+          >
+            <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name='lightning-bolt-outline' size={24}/>
+            </View>
+            <View style={styles.textAlignContainer}>
+              <View style={styles.recommendationContainer}>
+                <Text style={styles.billName}>Instant</Text>
+                <View style={styles.labelContainer}>
+                  <Text style={styles.recom}>Recommended</Text>
+                </View>
+              </View>
+              <Text style={styles.description}>Convert your airtime in seconds</Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.billContainer}
+            onPress={() => {
+              setIsSummaryVisible(false); // Close the BottomSheet
+              navigation.navigate('Booster');
+            }}
+          >
+            <View style={styles.iconContainer}>
+              <MaterialCommunityIcons name='alarm-check' size={24}/>
+            </View>
+            <View style={styles.textAlignContainer}>
+              <Text style={styles.billName}>Manual</Text>
+              <Text style={styles.description}>Convert airtime to cash in 10 minutes</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -484,7 +535,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.greyBackground,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    paddingTop: 30,
+    paddingTop: 40,
     paddingBottom: 30,
   },
   sheetTitle: {
@@ -546,5 +597,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#666',
     marginBottom: 20,
+  },
+  labelContainer:{
+    justifyContent:'space-between',
+    backgroundColor: colors.successLabel,
+    padding: 3,
+    alignItems: 'center',
+    width: '55%',
+    borderRadius: 5
+  },
+  recommendationContainer:{
+    flexDirection: 'row',
+    gap: 10
+  },
+  recom:{
+    color: colors.success
   }
 });
