@@ -63,6 +63,8 @@ import BoostSuccess from './screens/BoostSuccess';
 import Withdraw from './screens/Withdraw';
 import WithdrawSummary from './screens/WithdrawSummary';
 import TransactionPin from './screens/TransactionPin';
+import AirtimeToCash from './screens/AirtimeToCash';
+import ConvertSucces from './screens/ConvertSucces';
 
 
 const Stack = createNativeStackNavigator();
@@ -130,6 +132,8 @@ function App() {
             <Stack.Screen name="Withdraw" component={Withdraw} options={{ headerShown: false }}  />
             <Stack.Screen name="WithdrawSummary" component={WithdrawSummary} options={{ headerShown: false }}  />
             <Stack.Screen name="TransactionPin" component={TransactionPin} options={{ headerShown: false }}  />
+            <Stack.Screen name="AirtimeToCash" component={AirtimeToCash} options={{ headerShown: false }}  />
+            <Stack.Screen name="ConvertSuccess" component={ConvertSucces} options={{ headerShown: false }}  />
           </Stack.Navigator>
           <StatusBar backgroundColor='#F6F9FF' />
         </NavigationContainer>

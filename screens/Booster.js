@@ -111,9 +111,9 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: colors.periwinkle,
     padding: 16,
-    borderRadius: 15,
+    borderRadius: 10,
     marginBottom: 16,
-    marginTop: 20
+    marginTop: 10
   },
   title: {
     color: '#fff',

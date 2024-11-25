@@ -70,6 +70,7 @@ const OrderScreen = ({ navigation }) => {
     navigation.navigate('BoostSuccess', {
       amount: amount.toFixed(2), // Pass the calculated amount
       name: order?.name, // Pass the order name
+      quantity,
     });
   
     // After loading is done, hide the loading sheet

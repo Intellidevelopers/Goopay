@@ -1,17 +1,21 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Entypo, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; // Ensure you have these icons installed
 import colors from '../components/colors';
+import convertStore from '../store/convertStore';
+import { useNavigation } from '@react-navigation/native';
+
 
 // Utility function to format numbers as currency
-const formatCurrency = (amount) => {
-  return parseFloat(amount)
+const formatCurrency = (calculatedCredit) => {
+  return parseFloat(calculatedCredit)
     .toFixed(2)
     .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 };
 
-const BoosterSuccess = ({ navigation, route }) => {
-  const { amount, name, quantity } = route.params; // Access the passed parameters
+const Airtime2CashSuccess = () => {
+  const navigation = useNavigation(); // <-- Access navigation here
+  const { airtimeDetails } = convertStore();
 
   return (
     <View style={styles.container}>
@@ -19,9 +23,9 @@ const BoosterSuccess = ({ navigation, route }) => {
         <Ionicons name="checkmark-circle" size={100} color="#28A745" />
       </View>
       
-      <Text style={styles.title}>Order Successful</Text>
+      <Text style={styles.title}>Exchange Successful</Text>
       <Text style={styles.message}>
-        Congratulations! Your order of <Text style={styles.amount}>{quantity} followers.</Text> to <Text style={styles.recipient}>{name}</Text> was successful.
+        Congratulations! Your exchange of <Text style={styles.amount}>₦{formatCurrency(airtimeDetails.calculatedCredit)}</Text> was successful
       </Text>
 
       <TouchableOpacity style={styles.dismissButton} onPress={() => navigation.navigate('Home')}>
@@ -31,8 +35,7 @@ const BoosterSuccess = ({ navigation, route }) => {
   );
 };
 
-
-export default BoosterSuccess;
+export default Airtime2CashSuccess;
 
 const styles = StyleSheet.create({
   container: {

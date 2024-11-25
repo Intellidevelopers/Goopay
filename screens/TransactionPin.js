@@ -21,7 +21,7 @@ const TransferPin = () => {
       return prev; // Prevent PIN from exceeding 6 digits
     });
   };
-
+                                  
   const handleEnterPress = () => {
     if (pin.length < 4) {
       Toast.show({

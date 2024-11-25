@@ -193,7 +193,7 @@ const HomeScreen = ({ navigation }) => {
           { name: "TV Cable", icon: "television", screen: "TVCable" },
           { name: "Airtime", icon: "phone", screen: "Airtime" },
           { name: "Airtime 2 Cash", icon: "phone-sync", onPress: onAirtime2Cash },
-          { name: "Loans", icon: "piggy-bank", screen: "Loans" },
+          { name: "Giftcard", icon: "wallet-giftcard", screen: "GiftCard" },
           { name: "More", icon: "dots-horizontal", onPress: onConfirm }
         ].map((service, index) => (
           <TouchableOpacity
@@ -320,7 +320,7 @@ const HomeScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.billContainer}
             onPress={() => {
               setIsAirtime2CashVisible(false); // Close the BottomSheet
-              navigation.navigate('Betting');
+              navigation.navigate('AirtimeToCash');
             }}
           >
             <View style={styles.iconContainer}>
@@ -385,7 +385,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingVertical: 20,
-    backgroundColor: colors.background,
+    backgroundColor: colors.primary,
     borderRadius: 10,
     marginBottom: 30,
   },

@@ -19,7 +19,7 @@ const ProfileScreen = ({ navigation }) => {
     { id: '3', icon: 'message-square', label: 'Live Chat', route: 'Chat' },
     { id: '4', icon: 'shield', label: 'Account Verification', route: 'AccountVerification' },
     { id: '5', icon: 'bar-chart', label: 'Account Levels', route: 'AccountLevel' },
-    { id: '6', icon: 'users', label: 'Referrals', route: 'referrals' },
+    { id: '6', icon: 'users', label: 'Referrals', route: 'Referral' },
     { id: '7', icon: 'settings', label: 'Settings', route: 'Settings' },
 
   ];
